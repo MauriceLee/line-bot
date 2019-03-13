@@ -36,11 +36,6 @@ def callback():
 
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
-    if first == 0:
-        first = 1
-        line_bot_api.reply_message(
-            event.reply_token,
-            TextSendMessage(text='你可以問這些問題'))
     msg = event.message.text # 使用者的輸入
     r = '很抱歉, 您說什麼' # 回覆 = r
 
