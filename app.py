@@ -36,8 +36,13 @@ def callback():
 
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
-    msg = event.message.text
-    r = '很抱歉, 您說什麼'
+    if first == 0:
+        first = 1
+        line_bot_api.reply_message(
+            event.reply_token,
+            TextSendMessage(text='你可以問這些問題'))
+    msg = event.message.text # 使用者的輸入
+    r = '很抱歉, 您說什麼' # 回覆 = r
 
     if '給我貼圖' in msg:
         sticker_message = StickerSendMessage(
@@ -65,4 +70,5 @@ def handle_message(event):
 
 
 if __name__ == "__main__":
+    first = 0
     app.run()
